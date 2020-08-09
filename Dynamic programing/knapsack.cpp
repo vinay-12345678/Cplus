@@ -9,13 +9,15 @@ int find(vector <int> w,vector <int> v,vector <int> &dp,int weight,int index){
     if(dp[index]!=0)
         return dp[index];
 
+    cout<<weight<<endl;
+
     if(w[index]<=weight){
         int a=v[index]+find(w,v,dp,weight-w[index],index+1);
         int b=find(w,v,dp,weight,index+1);
         return dp[index]=max(a,b);
     }
     else
-        return find(w,v,dp,weight,index+1);
+        return dp[index]=find(w,v,dp,weight,index+1);
 }
 
 int main(){
