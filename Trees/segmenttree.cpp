@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#define endl "\n"
 using namespace std;
 
 void segtree(vector <int> v,vector <int> &arr,int index,int s,int e){
@@ -43,7 +44,7 @@ int main(){
     vector <int> arr(2*pow(2,ceil(log2(v.size()))));
     segtree(v,arr,1,0,v.size()-1);
 
-    cout<<find(arr,1,v.size()-1,2,3,1);
+    cout<<find(arr,1,v.size()-1,2,3,1)<<endl;
 
     /*int index=1;
     for(auto i:arr){
