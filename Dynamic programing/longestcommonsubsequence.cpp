@@ -8,21 +8,21 @@ string find(string s,string st,int i,int j){
   if(i==0 || j==0)
     return "";
   
-  if(dp[i-1][j-1]!="")
-    return dp[i-1][j-1];
+  if(dp[i][j]!="")
+    return dp[i][j];
 
   // cout<<i<<endl;
 
   if(s[i-1]==st[j-1]){
-    return dp[i-1][j-1]=find(s,st,i-1,j-1)+s[i-1];
+    return dp[i][j]=find(s,st,i-1,j-1)+s[i-1];
   }
   else{
     string a=find(s,st,i-1,j);
     string b=find(s,st,i,j-1);
     if(a.length()>b.length())
-      return dp[i-1][j-1]=a;
+      return dp[i][j]=a;
 
-    return dp[i-1][j-1]=b;
+    return dp[i][j]=b;
   }
 }
 int main(){

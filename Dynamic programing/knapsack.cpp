@@ -1,23 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int find(vector <int> w,vector <int> v,vector <int> &dp,int weight,int index){
+vector <vector <int> > dp(100,vector <int> (100,-1));
 
-    if(index>=w.size()){
+int find(vector <int> w,vector <int> v,int weight,int index){
+
+    if(index<=0){
         return 0;
     }
-    if(dp[index]!=0)
-        return dp[index];
+    if(dp[index][weight]!=-1)
+        return dp[index][weight];
 
-    cout<<weight<<endl;
+    // cout<<weight<<endl;
 
-    if(w[index]<=weight){
-        int a=v[index]+find(w,v,dp,weight-w[index],index+1);
-        int b=find(w,v,dp,weight,index+1);
-        return dp[index]=max(a,b);
+    if(w[index-1]<=weight){
+        int a=v[index-1]+find(w,v,weight-w[index-1],index-1);
+        int b=find(w,v,weight,index-1);
+        return dp[index][weight]=max(a,b);
     }
     else
-        return dp[index]=find(w,v,dp,weight,index+1);
+        return dp[index][weight]=find(w,v,weight,index-1);
 }
 
 int main(){
@@ -29,8 +31,8 @@ int main(){
 
    vector <int> w={2,1,4,3};
    vector <int> v={4,10,2,1};
-   vector <int> dp(w.size(),0);
+   
    int weight=6;
-   cout<<find(w,v,dp,weight,0);
+   cout<<find(w,v,weight,w.size());
 }
 

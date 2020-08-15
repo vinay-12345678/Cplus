@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector <int> dp(1000,-1);
+vector <vector <int> > dp(1000,vector <int> (1000,-1));
 
 int subset(vector <int> v,int sum,int index){
   if(sum==0)
@@ -10,16 +10,16 @@ int subset(vector <int> v,int sum,int index){
   if(index<=0)
     return 0;
 
-  if(dp[index-1]!=-1)
-    return dp[index-1];
+  if(dp[index][sum]!=-1)
+    return dp[index][sum];
 
   if(v[index-1]<=sum){
     int a=subset(v,sum-v[index-1],index-1);
     int b=subset(v,sum,index-1);
-    return dp[index-1]=a+b;
+    return dp[index][sum]=a+b;
   }
   else{
-    return dp[index-1]=subset(v,sum,index-1);
+    return dp[index][sum]=subset(v,sum,index-1);
   }
 }
 

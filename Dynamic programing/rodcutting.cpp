@@ -1,25 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector <int> dp(100,-1);
+vector <vector <int> > dp(100,vector <int> (100,-1));
 
 int find(vector <int> l,vector <int> p,int i,int length){
 
   if(length==0 || i==0)
     return 0;
 
-  if(dp[i-1]!=-1)
-    return dp[i-1];
+  if(dp[i][length]!=-1)
+    return dp[i][length];
 
-  cout<<length<<endl;
+  // cout<<length<<endl;
   if(l[i-1]<=length){
     int a=p[i-1]+find(l,p,i,length-l[i-1]);
     int b=find(l,p,i-1,length);
 
-    return dp[i-1]=max(a,b);
+    return dp[i][length]=max(a,b);
   }
   else
-    return dp[i-1]=find(l,p,i-1,length);
+    return dp[i][length]=find(l,p,i-1,length);
 
 }
 
