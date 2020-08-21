@@ -2,40 +2,34 @@
 using namespace std;
 
 class graph{
-  map <int,vector <int> >m;
-  int size;
-public:
-  /*graph(int n){
-    size=n+1;
-  }*/
+  map <int,vector <int> > m;
 
+public:
   void addedge(int a,int b){
     m[a].push_back(b);
     m[b].push_back(a);
   }
 
-  void __dfs(int parent,vector <bool> &v){
+  void __dfs(vector <bool> &visited,int start){
 
-    cout<<parent<<endl;
-    v[parent]=1;
+    cout<<start<<endl;
+    visited[start]=1;
 
-    for(auto child:m[parent]){
-      if(v[child]==0)
-        __dfs(child,v);
+    for(auto child:m[start]){
+      if(visited[child]==0){
+        __dfs(visited,child);
+      }
     }
-    return;
+
   }
 
-  void dfs(){
-    int n=m.size();
-    vector <bool> v(n,0);
+  void dfs(int start){
 
-    for(int i=0;i<v.size();i++){
-      if(v[i]==0)
-        __dfs(i,v);
-    }
+    vector <bool> visited(m.size()+1,0);
+    __dfs(visited,start);
+    
   }
-  
+
 
 };
 
@@ -48,16 +42,14 @@ int main(){
 
     graph g;
 
-    g.addedge(0,4);
-    g.addedge(0,1);
-    g.addedge(0,3);
-    g.addedge(2,1);
+    g.addedge(1,2);
+    g.addedge(2,5);
+    g.addedge(5,6);
     g.addedge(2,3);
+    g.addedge(3,4);
+    g.addedge(4,5);
 
-    g.addedge(6,5);
-    g.addedge(6,7);
-
-    g.dfs();
+    g.dfs(1);
 }
 
 
