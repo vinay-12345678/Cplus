@@ -2,47 +2,42 @@
 using namespace std;
 
 class graph{
-  map <int,vector <int> > m;
+  map <int,vector <int> >m;
   int count=0;
+
 public:
   void addedge(int a,int b){
     m[a].push_back(b);
+    m[b].push_back(a);
   }
 
-  void __dfs(vector <bool> &visited,int parent,vector <int> &path){
-
+  void __dfs(vector <bool> &visited,int parent,int node){
+    // cout<<node<<endl;
     visited[parent]=1;
-    // cout<<parent<<endl;
-
-    path[parent]=1;
 
     for(auto child:m[parent]){
       if(visited[child]==0){
-        __dfs(visited,child,path);
+        __dfs(visited,child,parent);
       }
-      else if(path[child]==1)
+      else if(child!=node){
         count++;
+      }
     }
 
-    path[parent]=0;
   }
 
   void dfs(int parent){
     vector <bool> visited(100,0);
-    vector <int> path(100,0);
-    __dfs(visited,parent,path);
+    visited[parent]=1;
 
-    for(auto i:m){
-      parent=i.first;
-      if(visited[parent]==0)
-        __dfs(visited,parent,path);
-    }
+    __dfs(visited,parent,-1);
 
+
+    count/=2;
     cout<<count<<endl;
 
   }
 
-  
 };
 
 int main(){
@@ -59,15 +54,14 @@ int main(){
     g.addedge(6,5);
     g.addedge(3,2);
     g.addedge(4,3);
-    g.addedge(4,6);
     g.addedge(5,4);
 
-    g.addedge(7,8);
+    /*g.addedge(7,8);
     g.addedge(8,9);
-    g.addedge(9,7);
+    g.addedge(9,7);*/
     g.dfs(1);
-    // g.bfs(7);
-    // cout<<g.dfs(1);
+
+    
 }
 
 
