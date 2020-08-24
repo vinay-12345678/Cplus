@@ -17,6 +17,7 @@ public:
   void dijksta(int p){
     set < pair<int,int> > s;
     map <int,int> dist;
+    
     for(auto i : m){
       dist[i.first]=INT_MAX;
     }
