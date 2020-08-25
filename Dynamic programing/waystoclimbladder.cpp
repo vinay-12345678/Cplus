@@ -13,7 +13,6 @@ int jumps(int e,int s,int j){
 
     int ans=0;
     for(int i=1;i<=j;i++){
-        cout<<ans<<endl;
         int a=jumps(e,s+i,j);
         ans+=a;
     }
