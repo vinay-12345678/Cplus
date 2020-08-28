@@ -7,10 +7,10 @@ int sum(vector <int> v,int k){
 
     for(auto i:v){
         curr+=i;
-        if(curr==k){
+        if(curr==k){            //from start upto i
             count++;
         }
-        if(m.find(curr-k)!=m.end()){
+        if(m.find(curr-k)!=m.end()){           //from any element before i, upto i
             count+=m[curr-k];
         }
 
