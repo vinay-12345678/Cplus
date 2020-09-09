@@ -6,15 +6,12 @@ void find(vector <int> v){
   int i=0;
   while(i<v.size()){
 
-    while(1){
-      if(v[i]==i+1 || v[v[i]-1]==v[i])
-        break;
+    if(v[i]==i+1 || v[v[i]-1]==v[i])
+      break;
 
-      else
-        swap(v[i],v[v[i]-1]);
-    }
+    else
+      swap(v[i],v[v[i]-1]);
 
-    i++;
   }
   
   vector <int> dub,mis;
