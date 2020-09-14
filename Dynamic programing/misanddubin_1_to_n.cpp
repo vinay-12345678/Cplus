@@ -7,7 +7,7 @@ void find(vector <int> v){
   while(i<v.size()){
 
     if(v[i]==i+1 || v[v[i]-1]==v[i])
-      break;
+      i++;
 
     else
       swap(v[i],v[v[i]-1]);
